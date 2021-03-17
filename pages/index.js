@@ -1,65 +1,50 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
+import Head from "next/head";
+import Image from "next/image";
+
+import Info from "./components/Info";
+import Stats from "./components/Stats";
+
+import "@reach/tabs/styles.css";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Site du FC Silmi</title>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
+      <main className="flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center p-8 my-8">
+          <div
+            className="rounded-full overflow-hidden border-2 border-white border-solid shadow-2xl mb-8"
+            style={{ width: "120px", height: "120px" }}
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            <Image
+              src="/images/fcsilmi.jpg"
+              alt="Logo du FC Silmi"
+              width={120}
+              height={120}
+            />
+          </div>
+          <h1 className="text-6xl font-bold italic">FC SILMI</h1>
         </div>
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <Tabs>
+          <TabList>
+            <Tab>INFO</Tab>
+            <Tab>STATS</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Info />
+            </TabPanel>
+            <TabPanel>
+              <Stats />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </main>
     </div>
-  )
+  );
 }
