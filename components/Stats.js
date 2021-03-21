@@ -70,14 +70,14 @@ const Player = ({ name = "IA", top, left }) => {
                 />
               </div>
 
-              <div className="ml-3 md:ml-6 mb-3 md:mb-6">
+              <div className="flex flex-col ml-3 md:ml-6 mb-3 md:mb-6">
                 <h3 className="text-3xl text-white mb-4">
                   {players[name].name}
                 </h3>
 
                 <a
-                  className="text-md uppercase"
-                  style={{ color: "#772ce8" }}
+                  className="focus:outline-none"
+                  style={{ color: "#772ce8", width: "fit-content" }}
                   target="_blank"
                   rel="noopener noreferrer"
                   href={players[name].twitch}

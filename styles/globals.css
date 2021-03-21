@@ -56,5 +56,6 @@ body {
   [data-reach-dialog-content] {
     width: 100vw !important;
     margin: 0 !important;
+    height: 100%;
   }
 }
