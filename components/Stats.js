@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Dialog } from "@reach/dialog";
 
-import players from "./data.js";
 import { RowBilan } from "./Info";
+import players from "../utils/data.js";
 import TwitchIcon from "../icons/twitch.svg";
 
 import "@reach/dialog/styles.css";

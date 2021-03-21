@@ -2,9 +2,9 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import Head from "next/head";
 import Image from "next/image";
 
-import Info from "./components/Info";
-import Stats from "./components/Stats";
-import Matchs from "./components/Matchs";
+import Info from "../components/Info";
+import Stats from "../components/Stats";
+import Matchs from "../components/Matchs";
 
 import "@reach/tabs/styles.css";
 

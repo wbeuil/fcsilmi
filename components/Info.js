@@ -2,7 +2,7 @@ import { Chart } from "react-google-charts";
 import Image from "next/image";
 import useSWR from "swr";
 
-import fetcher from "../utils.js";
+import fetcher from "../utils/fetcher.js";
 
 const Graph = ({ totalGames, data }) => {
   return (

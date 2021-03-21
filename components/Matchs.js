@@ -7,8 +7,8 @@ import {
 } from "@reach/accordion";
 import useSWR from "swr";
 
-import players from "./data.js";
-import fetcher from "../utils.js";
+import players from "../utils/data.js";
+import fetcher from "../utils/fetcher.js";
 import ArrowIcon from "../icons/arrow.svg";
 
 import "@reach/accordion/styles.css";
