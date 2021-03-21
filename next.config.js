@@ -1,4 +1,8 @@
 module.exports = {
+  i18n: {
+    locales: ["fr-FR"],
+    defaultLocale: "fr-FR",
+  },
   images: {
     domains: ["media.contentapi.ea.com", "static-cdn.jtvnw.net"],
   },

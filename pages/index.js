@@ -13,6 +13,10 @@ export default function Home() {
     <div>
       <Head>
         <title>Site du FC Silmi</title>
+        <meta
+          name="description"
+          content="Club FIFA PRO avec vos streamers préférés ! | Chaque Lundi 20h30 sur Twitch | Rediffs dispos sur Youtube"
+        ></meta>
       </Head>
 
       <main className="flex flex-col justify-center items-center">
