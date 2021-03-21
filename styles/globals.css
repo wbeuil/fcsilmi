@@ -51,3 +51,10 @@ body {
 [data-reach-tab-panel] {
   @apply w-full focus:outline-none;
 }
+
+@media (max-width: 767px) {
+  [data-reach-dialog-content] {
+    width: 100vw !important;
+    margin: 0 !important;
+  }
+}

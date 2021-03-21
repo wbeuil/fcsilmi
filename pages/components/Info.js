@@ -1,6 +1,5 @@
 import { Chart } from "react-google-charts";
 import Image from "next/image";
-import Head from "next/head";
 
 const Graph = ({ totalGames, data }) => {
   return (
@@ -43,14 +42,14 @@ const Graph = ({ totalGames, data }) => {
   );
 };
 
-const RowBilan = ({ name, value }) => {
+export const RowBilan = ({ name, value }) => {
   return (
     <div
       className="flex flex-row justify-between items-center border-b border-solid border-gray-200"
       style={{ height: "48px" }}
     >
       <p>{name}</p>
-      <span className="text-2xl mr-8">{value}</span>
+      <span className="text-2xl mr-2 md:mr-8">{value}</span>
     </div>
   );
 };
