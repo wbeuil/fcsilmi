@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import Info from "./components/Info";
 import Stats from "./components/Stats";
+import Matchs from "./components/Matchs";
 
 import "@reach/tabs/styles.css";
 
@@ -34,6 +35,7 @@ export default function Home() {
           <TabList>
             <Tab>INFO</Tab>
             <Tab>STATS</Tab>
+            <Tab>MATCHS</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -41,6 +43,9 @@ export default function Home() {
             </TabPanel>
             <TabPanel>
               <Stats />
+            </TabPanel>
+            <TabPanel>
+              <Matchs />
             </TabPanel>
           </TabPanels>
         </Tabs>

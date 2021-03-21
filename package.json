@@ -8,13 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reach/accordion": "^0.13.2",
     "@reach/dialog": "^0.13.2",
     "@reach/tabs": "^0.13.2",
     "@svgr/webpack": "^5.5.0",
     "next": "10.0.9",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-google-charts": "^3.0.15"
+    "react-google-charts": "^3.0.15",
+    "swr": "^0.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
