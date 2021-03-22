@@ -1,6 +1,8 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import Head from "next/head";
 import Image from "next/image";
+import { promises as fs } from "fs";
+import path from "path";
 
 import Info from "../components/Info";
 import Stats from "../components/Stats";
@@ -8,7 +10,7 @@ import Matchs from "../components/Matchs";
 
 import "@reach/tabs/styles.css";
 
-export default function Home() {
+export default function Home({ matchs }) {
   return (
     <div>
       <Head>
@@ -77,11 +79,23 @@ export default function Home() {
               <Stats />
             </TabPanel>
             <TabPanel>
-              <Matchs />
+              <Matchs matchs={matchs} />
             </TabPanel>
           </TabPanels>
         </Tabs>
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const dataDirectory = path.join(process.cwd(), "data");
+  const matchsPath = path.join(dataDirectory, "matchs.json");
+  const matchs = await fs.readFile(matchsPath, "utf8");
+
+  return {
+    props: {
+      matchs: JSON.parse(matchs),
+    },
+  };
 }

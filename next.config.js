@@ -4,7 +4,11 @@ module.exports = {
     defaultLocale: "fr-FR",
   },
   images: {
-    domains: ["media.contentapi.ea.com", "static-cdn.jtvnw.net"],
+    domains: [
+      "media.contentapi.ea.com",
+      "static-cdn.jtvnw.net",
+      "fifa21.content.easports.com",
+    ],
   },
   webpack(config) {
     config.module.rules.push({

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "data": "node scripts/matchs.js"
   },
   "dependencies": {
     "@reach/accordion": "^0.13.2",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
+    "node-fetch": "^2.6.1",
     "postcss": "^8.2.8",
     "tailwindcss": "^2.0.3"
   }
