@@ -43,6 +43,8 @@ export default function Home() {
           content="https://fcsilmi.club/images/preview.png"
         />
         <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="628" />
+        <meta property="og:locale" content="fr_FR" />
       </Head>
 
       <main className="flex flex-col justify-center items-center">
