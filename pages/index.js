@@ -10,7 +10,7 @@ import Matchs from "../components/Matchs";
 
 import "@reach/tabs/styles.css";
 
-export default function Home({ matchs }) {
+export default function Home({ matchs, players }) {
   return (
     <div>
       <Head>
@@ -76,10 +76,10 @@ export default function Home({ matchs }) {
               <Info />
             </TabPanel>
             <TabPanel>
-              <Stats />
+              <Stats players={players} />
             </TabPanel>
             <TabPanel>
-              <Matchs matchs={matchs} />
+              <Matchs matchs={matchs} players={players} />
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -92,10 +92,13 @@ export async function getStaticProps() {
   const dataDirectory = path.join(process.cwd(), "data");
   const matchsPath = path.join(dataDirectory, "matchs.json");
   const matchs = await fs.readFile(matchsPath, "utf8");
+  const playersPath = path.join(dataDirectory, "players.json");
+  const players = await fs.readFile(playersPath, "utf8");
 
   return {
     props: {
       matchs: JSON.parse(matchs),
+      players: JSON.parse(players),
     },
   };
 }

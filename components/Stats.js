@@ -3,12 +3,11 @@ import Image from "next/image";
 import { Dialog } from "@reach/dialog";
 
 import { RowBilan } from "./Info";
-import players from "../utils/data.js";
 import TwitchIcon from "../icons/twitch.svg";
 
 import "@reach/dialog/styles.css";
 
-const Player = ({ name = "IA", top, left }) => {
+const Player = ({ data, name = "IA", top, left }) => {
   const [showDialog, setShowDialog] = useState(false);
 
   return (
@@ -33,7 +32,7 @@ const Player = ({ name = "IA", top, left }) => {
             IA
           </div>
         ) : (
-          <Image src={players[name].image} alt={name} width={50} height={50} />
+          <Image src={data.image} alt={name} width={50} height={50} />
         )}
       </button>
 
@@ -62,25 +61,18 @@ const Player = ({ name = "IA", top, left }) => {
                 className="contents"
                 style={{ width: "200px", height: "200px" }}
               >
-                <Image
-                  src={players[name].cover}
-                  alt={name}
-                  width={200}
-                  height={200}
-                />
+                <Image src={data.cover} alt={name} width={200} height={200} />
               </div>
 
               <div className="flex flex-col ml-3 md:ml-6 mb-3 md:mb-6">
-                <h3 className="text-3xl text-white mb-4">
-                  {players[name].name}
-                </h3>
+                <h3 className="text-3xl text-white mb-4">{data.name}</h3>
 
                 <a
                   className="focus:outline-none"
                   style={{ color: "#772ce8", width: "fit-content" }}
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={players[name].twitch}
+                  href={data.twitch}
                 >
                   <TwitchIcon width={30} />
                 </a>
@@ -99,13 +91,13 @@ const Player = ({ name = "IA", top, left }) => {
           <div style={{ paddingTop: "250px" }}>
             <h2 className="text-xl uppercase mb-2">Bilan général</h2>
 
-            <RowBilan name="Note globale" value={86} />
-            <RowBilan name="Matchs joués" value={70} />
-            <RowBilan name="Buts" value={33} />
-            <RowBilan name="Passes" value={785} />
-            <RowBilan name="Tacles" value={86} />
-            <RowBilan name="Homme du match" value={6} />
-            <RowBilan name="Cartons rouge" value={2} />
+            <RowBilan name="Note moyenne" value={data.rating} />
+            <RowBilan name="Matchs joués" value={data.gamesPlayed} />
+            <RowBilan name="Buts" value={data.goals} />
+            <RowBilan name="Passes" value={data.passesmade} />
+            <RowBilan name="Tacles" value={data.tacklesmade} />
+            <RowBilan name="Homme du match" value={data.mom} />
+            <RowBilan name="Cartons rouge" value={data.redcards} />
           </div>
         </Dialog>
       )}
@@ -113,7 +105,7 @@ const Player = ({ name = "IA", top, left }) => {
   );
 };
 
-const Stats = () => {
+const Stats = ({ players }) => {
   return (
     <div className="w-full relative mx-auto my-8" style={{ maxWidth: "450px" }}>
       <svg
@@ -147,17 +139,17 @@ const Stats = () => {
         </g>
       </svg>
 
-      <Player name="Ponce" top="95%" left="50%" />
-      <Player name="Rivenzi" top="75%" left="20%" />
+      <Player data={players["Ponce"]} name="Ponce" top="95%" left="50%" />
+      <Player data={players["Rivenzi"]} name="Rivenzi" top="75%" left="20%" />
       <Player top="80%" left="40%" />
       <Player top="80%" left="60%" />
       <Player top="75%" left="80%" />
-      <Player name="MisterMV" top="55%" left="50%" />
-      <Player name="Domingo" top="45%" left="35%" />
-      <Player name="Xari" top="45%" left="65%" />
-      <Player name="Etoiles" top="25%" left="25%" />
-      <Player name="Jiraya" top="25%" left="75%" />
-      <Player name="DFG" top="15%" left="50%" />
+      <Player data={players["MisterMV"]} name="MisterMV" top="55%" left="50%" />
+      <Player data={players["Domingo"]} name="Domingo" top="45%" left="35%" />
+      <Player data={players["Xari"]} name="Xari" top="45%" left="65%" />
+      <Player data={players["Etoiles"]} name="Etoiles" top="25%" left="25%" />
+      <Player data={players["Jiraya"]} name="Jiraya" top="25%" left="75%" />
+      <Player data={players["DFG"]} name="DFG" top="15%" left="50%" />
     </div>
   );
 };

@@ -6,7 +6,6 @@ import {
   AccordionPanel,
 } from "@reach/accordion";
 
-import players from "../utils/data.js";
 import ArrowIcon from "../icons/arrow.svg";
 
 import "@reach/accordion/styles.css";
@@ -36,7 +35,7 @@ const RowMatch = ({ name, valueA, valueB }) => {
   );
 };
 
-const Matchs = ({ matchs }) => {
+const Matchs = ({ matchs, players }) => {
   return (
     <Accordion
       collapsible

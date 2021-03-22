@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "data": "node scripts/matchs.js"
+    "matchs": "node scripts/matchs.js",
+    "players": "node scripts/players.js"
   },
   "dependencies": {
     "@reach/accordion": "^0.13.2",

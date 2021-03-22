@@ -83,6 +83,7 @@ const parseMatch = (m) => {
       passesmade: m.players[FCSILMI][key].passesmade,
       passattempts: m.players[FCSILMI][key].passattempts,
       redcards: m.players[FCSILMI][key].redcards,
+      mom: m.players[FCSILMI][key].mom,
     };
   });
   return match;
