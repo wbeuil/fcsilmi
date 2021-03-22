@@ -1,16 +1,25 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import Head from "next/head";
 import Image from "next/image";
+import useSWR from "swr";
+
 import { promises as fs } from "fs";
 import path from "path";
 
 import Info from "../components/Info";
 import Stats from "../components/Stats";
 import Matchs from "../components/Matchs";
+import fetcher from "../utils/fetcher.js";
 
 import "@reach/tabs/styles.css";
 
 export default function Home({ matchs, players }) {
+  const { data } = useSWR(`/api/info`, fetcher);
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <div>
       <Head>
@@ -73,7 +82,7 @@ export default function Home({ matchs, players }) {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <Info />
+              <Info info={data} />
             </TabPanel>
             <TabPanel>
               <Stats players={players} />

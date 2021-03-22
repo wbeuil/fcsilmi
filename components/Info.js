@@ -1,8 +1,5 @@
 import { Chart } from "react-google-charts";
 import Image from "next/image";
-import useSWR from "swr";
-
-import fetcher from "../utils/fetcher.js";
 
 const Graph = ({ totalGames, data }) => {
   return (
@@ -86,18 +83,12 @@ const Heading = ({ name }) => {
   );
 };
 
-const Information = () => {
-  const { data: d } = useSWR(`/api/info`, fetcher);
-
-  if (!d) {
-    return null;
-  }
-
+const Information = ({ info }) => {
   const data = [
     ["Résultats", "Nombre de matchs"],
-    ["Victoires", parseInt(d.wins, 10)],
-    ["Défaites", parseInt(d.losses)],
-    ["Nuls", parseInt(d.ties, 10)],
+    ["Victoires", parseInt(info.wins, 10)],
+    ["Défaites", parseInt(info.losses)],
+    ["Nuls", parseInt(info.ties, 10)],
   ];
 
   return (
@@ -106,18 +97,18 @@ const Information = () => {
         <div className="w-full md:w-1/2 flex flex-col p-8 md:mr-4">
           <Heading name="bilan" />
 
-          <RowBilan name="Total points" value={d.overallRankingPoints} />
-          <RowBilan name="Saisons disputées" value={d.seasons} />
-          <RowBilan name="Meilleur division" value={d.bestDivision} />
-          <RowBilan name="Titres remportés" value={d.titlesWon} />
-          <RowBilan name="Championnats remportés" value={d.leaguesWon} />
-          <RowBilan name="Coupes remportées" value={d.totalCupsWon} />
-          <RowBilan name="Promotions" value={d.promotions} />
-          <RowBilan name="Relégations" value={d.relegations} />
+          <RowBilan name="Total points" value={info.overallRankingPoints} />
+          <RowBilan name="Saisons disputées" value={info.seasons} />
+          <RowBilan name="Meilleur division" value={info.bestDivision} />
+          <RowBilan name="Titres remportés" value={info.titlesWon} />
+          <RowBilan name="Championnats remportés" value={info.leaguesWon} />
+          <RowBilan name="Coupes remportées" value={info.totalCupsWon} />
+          <RowBilan name="Promotions" value={info.promotions} />
+          <RowBilan name="Relégations" value={info.relegations} />
         </div>
 
         <div className="w-full md:w-1/2 relative flex flex-col justify-center items-center md:ml-4">
-          <Graph totalGames={d.totalGames} data={data} />
+          <Graph totalGames={info.totalGames} data={data} />
         </div>
       </div>
 
@@ -128,7 +119,7 @@ const Information = () => {
           <div className="flex flex-col items-center border-r border-solid border-gray-200">
             <span className="text-xl font-bold">Division</span>
             <Image
-              src={`https://media.contentapi.ea.com/content/dam/eacom/fifa/pro-clubs/divisioncrest${d.currentDivision}.png`}
+              src={`https://media.contentapi.ea.com/content/dam/eacom/fifa/pro-clubs/divisioncrest${info.currentDivision}.png`}
               alt="Division actuelle"
               width={100}
               height={100}
@@ -141,19 +132,20 @@ const Information = () => {
               className="text-5xl font-bold text-center"
               style={{ width: "100px", height: "100px", lineHeight: "100px" }}
             >
-              {d.points}
+              {info.points}
             </span>
           </div>
 
           <div className="flex flex-col items-center col-span-2 md:col-span-1 mt-8 md:mt-0">
             <span className="text-xl font-bold">
-              Résultats: {d.seasonWins}-{d.seasonLosses}-{d.seasonTies} (V-D-N)
+              Résultats: {info.seasonWins}-{info.seasonLosses}-{info.seasonTies}{" "}
+              (V-D-N)
             </span>
             <div
               className="w-full flex flex-row items-center justify-center"
               style={{ height: "100px" }}
             >
-              {d.recentResults.map((r, i) => {
+              {info.recentResults.map((r, i) => {
                 let color;
 
                 switch (r) {
