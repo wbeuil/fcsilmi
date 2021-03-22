@@ -84,6 +84,37 @@ export default function Home({ matchs, players }) {
           </TabPanels>
         </Tabs>
       </main>
+
+      <footer className="max-w-2xl mx-auto w-full pb-8 px-4 md:px-0">
+        <hr className="w-full border-1 border-gray-300 mb-8" />
+        <p className="text-gray-600 px-8 mb-4">
+          *Toutes les statistiques des joueurs et des matchs sont calculées sur
+          les données recueillis du site EA Sports. Ici nous n'avons pu en
+          recueillir que pour 50 matchs sur les 71.
+        </p>
+        <p className="text-gray-600 px-8 mb-4">
+          **Logo du FC Silmi par @FcSilmi sur Twitter.
+        </p>
+        <div className="flex flex-row justify-center px-8">
+          <a
+            className="text-gray-600 mx-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://twitter.com/fcsilmi"
+          >
+            Twitter
+          </a>
+
+          <a
+            className="text-gray-600 mx-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/wbeuil/fcsilmi"
+          >
+            GitHub
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
