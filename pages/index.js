@@ -16,7 +16,33 @@ export default function Home() {
         <meta
           name="description"
           content="Club FIFA PRO avec vos streamers préférés ! | Chaque Lundi 20h30 sur Twitch | Rediffs dispos sur Youtube"
-        ></meta>
+        />
+        <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+        <link rel="alternate icon" href="/images/favicon.ico" />
+        <link
+          rel="mask-icon"
+          href="/images/safari-pinned-tab.svg"
+          color="#eeeeee"
+        />
+        <link
+          rel="preload"
+          href="/fonts/DIN-Condensed.ttf"
+          as="font"
+          crossOrigin=""
+        />
+        <meta name="theme-color" content="#eeeeee" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fcsilmi.club/" />
+        <meta property="og:title" content="Site du FC Silmi" />
+        <meta
+          property="og:description"
+          content="Club FIFA PRO avec vos streamers préférés ! | Chaque Lundi 20h30 sur Twitch | Rediffs dispos sur Youtube"
+        />
+        <meta
+          property="og:image"
+          content="https://fcsilmi.club/images/preview.png"
+        />
+        <meta property="og:image:width" content="1200" />
       </Head>
 
       <main className="flex flex-col justify-center items-center">
