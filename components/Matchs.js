@@ -44,7 +44,7 @@ const Matchs = ({ matchs, players }) => {
       {matchs.map((match) => (
         <AccordionItem
           key={match.id}
-          className="w-full bg-white flex flex-col rounded-xl overflow-hidden shadow-xl p-4 md:p-8 mb-8"
+          className="w-full bg-white dark:bg-gray-800 flex flex-col rounded-xl overflow-hidden shadow-xl p-4 md:p-8 mb-8"
         >
           <div className="flex flex-row items-center">
             <div className="flex flex-row justify-between items-center w-1/2">

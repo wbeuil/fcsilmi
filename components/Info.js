@@ -75,7 +75,7 @@ const Information = ({ info }) => {
 
   return (
     <div className="w-full flex flex-col items-center my-8">
-      <div className="bg-white w-full max-w-screen-lg flex flex-col md:flex-row justify-between rounded-xl overflow-hidden shadow-xl mb-8">
+      <div className="bg-white dark:bg-gray-800 w-full max-w-screen-lg flex flex-col md:flex-row justify-between rounded-xl overflow-hidden shadow-xl mb-8">
         <div className="w-full md:w-1/2 flex flex-col p-8 md:mr-4">
           <Heading name="bilan" />
 
@@ -92,8 +92,8 @@ const Information = ({ info }) => {
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:ml-4 mb-4">
           <Graph totalGames={info.totalGames} data={data} />
           <div>
-            {data.map((d) => (
-              <div className="flex flex-row items-center">
+            {data.map((d, i) => (
+              <div key={i} className="flex flex-row items-center">
                 <span
                   className="mr-2"
                   style={{
@@ -110,7 +110,7 @@ const Information = ({ info }) => {
         </div>
       </div>
 
-      <div className="bg-white w-full max-w-screen-lg flex flex-col rounded-xl shadow-xl my-8 p-8">
+      <div className="bg-white dark:bg-gray-800 w-full max-w-screen-lg flex flex-col rounded-xl shadow-xl my-8 p-8">
         <Heading name="saison actuelle" />
 
         <div className="w-full grid grid-cols-2 md:grid-cols-3">

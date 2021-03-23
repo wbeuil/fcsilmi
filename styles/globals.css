@@ -11,7 +11,7 @@
 }
 
 body {
-  background: #eee;
+  @apply bg-gray-100 dark:bg-gray-900;
 }
 
 [data-reach-tabs] {
@@ -25,7 +25,7 @@ body {
   font-size: 12px;
   font-weight: 600;
 
-  @apply mb-8;
+  @apply bg-gray-200 dark:bg-gray-800 !important;
 }
 
 [data-reach-tab] {
@@ -33,15 +33,15 @@ body {
   margin: 4px !important;
   border-radius: 15px;
 
+  @apply focus:border-transparent !important;
   @apply focus:outline-none focus:ring focus:border-blue-300;
 }
 
 [data-reach-tab][data-selected] {
   color: black;
   border-bottom-color: transparent !important;
-  background-color: white;
 
-  @apply shadow-lg;
+  @apply bg-white dark:bg-gray-900 text-black dark:text-white shadow-lg;
 }
 
 [data-reach-tab-panels] {
@@ -52,10 +52,14 @@ body {
   @apply w-full focus:outline-none;
 }
 
+[data-reach-dialog-content] {
+  @apply bg-white dark:bg-gray-800 !important;
+}
+
 @media (max-width: 767px) {
   [data-reach-dialog-content] {
     width: 100vw !important;
     margin: 0 !important;
-    height: 100%;
+    min-height: 100%;
   }
 }

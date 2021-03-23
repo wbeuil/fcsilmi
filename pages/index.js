@@ -6,6 +6,7 @@ import useSWR from "swr";
 import { promises as fs } from "fs";
 import path from "path";
 
+import Button from "../components/Button";
 import Info from "../components/Info";
 import Stats from "../components/Stats";
 import Matchs from "../components/Matchs";
@@ -75,11 +76,14 @@ export default function Home({ matchs, players }) {
         </div>
 
         <Tabs>
-          <TabList>
-            <Tab>INFO</Tab>
-            <Tab>STATS</Tab>
-            <Tab>MATCHS</Tab>
-          </TabList>
+          <div className="flex flex-row items-center mb-8">
+            <TabList>
+              <Tab>INFO</Tab>
+              <Tab>STATS</Tab>
+              <Tab>MATCHS</Tab>
+            </TabList>
+            <Button />
+          </div>
           <TabPanels>
             <TabPanel>
               <Info info={data} />
