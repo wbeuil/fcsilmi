@@ -1,32 +1,15 @@
-import { Chart } from "react-google-charts";
+import { PieChart } from "react-minimal-pie-chart";
 import Image from "next/image";
 
 const Graph = ({ totalGames, data }) => {
   return (
-    <>
-      <Chart
-        width={"100%"}
-        height={"100%"}
-        style={{ maxWidth: "400px" }}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
+    <div className="relative">
+      <PieChart
+        className="p-8"
+        style={{ maxWidth: "350px" }}
         data={data}
-        options={{
-          pieHole: 0.8,
-          legend: "none",
-          pieSliceText: "none",
-          slices: [
-            {
-              color: "#34d399",
-            },
-            {
-              color: "#f87171",
-            },
-            {
-              color: "#d1d5db",
-            },
-          ],
-        }}
+        lineWidth={15}
+        paddingAngle={5}
       />
       <p
         className="absolute text-2xl font-bold italic"
@@ -38,7 +21,7 @@ const Graph = ({ totalGames, data }) => {
       >
         {totalGames} matchs
       </p>
-    </>
+    </div>
   );
 };
 
@@ -85,10 +68,9 @@ const Heading = ({ name }) => {
 
 const Information = ({ info }) => {
   const data = [
-    ["Résultats", "Nombre de matchs"],
-    ["Victoires", parseInt(info.wins, 10)],
-    ["Défaites", parseInt(info.losses)],
-    ["Nuls", parseInt(info.ties, 10)],
+    { title: "Victoires", value: parseInt(info.wins, 10), color: "#34d399" },
+    { title: "Défaites", value: parseInt(info.losses), color: "#f87171" },
+    { title: "Nuls", value: parseInt(info.ties, 10), color: "#d1d5db" },
   ];
 
   return (
@@ -107,8 +89,24 @@ const Information = ({ info }) => {
           <RowBilan name="Relégations" value={info.relegations} />
         </div>
 
-        <div className="w-full md:w-1/2 relative flex flex-col justify-center items-center md:ml-4">
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:ml-4 mb-4">
           <Graph totalGames={info.totalGames} data={data} />
+          <div>
+            {data.map((d) => (
+              <div className="flex flex-row items-center">
+                <span
+                  className="mr-2"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    backgroundColor: d.color,
+                  }}
+                />
+                <p className="mr-2">{d.value}</p>
+                <p className="text-gray-500">{d.title}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
