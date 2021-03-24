@@ -14,7 +14,7 @@ import fetcher from "../utils/fetcher.js";
 
 import "@reach/tabs/styles.css";
 
-export default function Home({ matchs, players }) {
+export default function Home({ maxMatchsPages, matchs, players }) {
   const { data } = useSWR(`/api/info`, fetcher);
 
   if (!data) {
@@ -92,7 +92,11 @@ export default function Home({ matchs, players }) {
               <Stats players={players} />
             </TabPanel>
             <TabPanel>
-              <Matchs matchs={matchs} players={players} />
+              <Matchs
+                maxMatchsPages={maxMatchsPages}
+                matchs={matchs}
+                players={players}
+              />
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -134,13 +138,15 @@ export default function Home({ matchs, players }) {
 
 export async function getStaticProps() {
   const dataDirectory = path.join(process.cwd(), "data");
-  const matchsPath = path.join(dataDirectory, "matchs.json");
-  const matchs = await fs.readFile(matchsPath, "utf8");
+  const matchsPath = path.join(dataDirectory, "matchs");
+  const matchs = await fs.readFile(`${matchsPath}/0.json`, "utf8");
+  const matchsPages = await fs.readdir(matchsPath);
   const playersPath = path.join(dataDirectory, "players.json");
   const players = await fs.readFile(playersPath, "utf8");
 
   return {
     props: {
+      maxMatchsPages: matchsPages.length,
       matchs: JSON.parse(matchs),
       players: JSON.parse(players),
     },

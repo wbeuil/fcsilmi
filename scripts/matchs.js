@@ -1,7 +1,8 @@
 const fetch = require("node-fetch");
+const path = require("path");
 const fs = require("fs");
 
-const jsonPath = "./data/matchs.json";
+const matchsDirectoryPath = path.join(__dirname, "../data/matchs");
 
 const FCSILMI = "16557521";
 
@@ -92,25 +93,28 @@ const parseMatch = (m) => {
 fetchMatchs().then((res) => {
   const matchs = res.map((match) => parseMatch(match));
 
-  try {
-    if (fs.existsSync(jsonPath)) {
-      fs.readFile(
-        jsonPath,
-        (readFileCallback = (err, data) => {
-          if (err) {
-            console.error(err);
-          } else {
-            let obj = JSON.parse(data);
-            obj.unshift(...matchs);
-            const json = JSON.stringify(obj);
-            fs.writeFile(jsonPath, json, (err) => {
-              if (err) return console.error(err);
-            });
-          }
-        })
-      );
+  fs.readdir(matchsDirectoryPath, (err, files) => {
+    if (err) return console.error("Unable to scan directory: " + err);
+
+    let tmp = [];
+    files.forEach((file) => {
+      const filePath = path.join(matchsDirectoryPath, file);
+      const data = fs.readFileSync(filePath);
+      const val = JSON.parse(data);
+      tmp.push(...val);
+    });
+    tmp.unshift(...matchs);
+
+    let index = 0;
+    const chunk = 10;
+    for (i = 0; i < tmp.length; i += chunk) {
+      const arr = tmp.slice(i, i + chunk);
+      const json = JSON.stringify(arr);
+      const filePath = path.join(matchsDirectoryPath, `${index}.json`);
+      fs.writeFile(filePath, json, (err) => {
+        if (err) return console.error(err);
+      });
+      index++;
     }
-  } catch (err) {
-    console.error(err);
-  }
+  });
 });
