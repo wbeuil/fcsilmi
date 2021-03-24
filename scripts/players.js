@@ -1,6 +1,7 @@
 const fs = require("fs");
+const path = require("path");
 
-const matchsPath = "./data/matchs.json";
+const matchsDirectoryPath = path.join(__dirname, "../data/matchs");
 const jsonPath = "./data/players.json";
 
 const players = {
@@ -118,40 +119,35 @@ const players = {
   },
 };
 
-if (fs.existsSync(matchsPath)) {
-  fs.readFile(
-    matchsPath,
-    (readFileCallback = (err, data) => {
-      if (err) {
-        console.error(err);
-      } else {
-        const obj = JSON.parse(data);
-        for (const match of obj) {
-          Object.keys(match.players).map((key) => {
-            players[key].gamesPlayed++;
-            players[key].goals += parseInt(match.players[key].goals, 10);
-            players[key].passesmade += parseInt(
-              match.players[key].passesmade,
-              10
-            );
-            players[key].tacklesmade += parseInt(
-              match.players[key].tacklesmade,
-              10
-            );
-            players[key].redcards += parseInt(match.players[key].redcards, 10);
-            players[key].mom += parseInt(match.players[key].mom, 10);
-            players[key].rating += parseFloat(match.players[key].rating);
-          });
-        }
-        Object.keys(players).map((key) => {
-          players[key].rating /= players[key].gamesPlayed;
-          players[key].rating = players[key].rating.toFixed(2);
-        });
-        const json = JSON.stringify(players);
-        fs.writeFile(jsonPath, json, (err) => {
-          if (err) return console.error(err);
-        });
-      }
-    })
-  );
+let matchs = [];
+
+const files = fs.readdirSync(matchsDirectoryPath);
+
+files.forEach((file) => {
+  const filePath = path.join(matchsDirectoryPath, file);
+  const data = fs.readFileSync(filePath);
+  const val = JSON.parse(data);
+  matchs.push(...val);
+});
+
+for (const match of matchs) {
+  Object.keys(match.players).map((key) => {
+    players[key].gamesPlayed++;
+    players[key].goals += parseInt(match.players[key].goals, 10);
+    players[key].passesmade += parseInt(match.players[key].passesmade, 10);
+    players[key].tacklesmade += parseInt(match.players[key].tacklesmade, 10);
+    players[key].redcards += parseInt(match.players[key].redcards, 10);
+    players[key].mom += parseInt(match.players[key].mom, 10);
+    players[key].rating += parseFloat(match.players[key].rating);
+  });
 }
+
+Object.keys(players).map((key) => {
+  players[key].rating /= players[key].gamesPlayed;
+  players[key].rating = players[key].rating.toFixed(2);
+});
+
+const json = JSON.stringify(players);
+fs.writeFile(jsonPath, json, (err) => {
+  if (err) return console.error(err);
+});
