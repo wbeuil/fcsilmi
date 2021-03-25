@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { Dialog } from "@reach/dialog";
+import { DialogContent, DialogOverlay } from "@reach/dialog";
+import { Listbox, ListboxOption } from "@reach/listbox";
 
 import { RowBilan } from "./Info";
 import TwitchIcon from "../icons/twitch.svg";
 
 import "@reach/dialog/styles.css";
+import "@reach/listbox/styles.css";
 
 const Player = ({ data, name = "IA", top, left }) => {
   const [showDialog, setShowDialog] = useState(false);
+  const [value, setValue] = useState("total");
 
   return (
     <>
@@ -37,69 +40,123 @@ const Player = ({ data, name = "IA", top, left }) => {
       </button>
 
       {name !== "IA" && (
-        <Dialog
+        <DialogOverlay
           isOpen={showDialog}
           onDismiss={() => setShowDialog(false)}
-          className="relative md:rounded-xl overflow-hidden"
-          aria-label="Pop-up Statistique"
+          dangerouslyBypassFocusLock={true}
         >
-          <div
-            className="w-full absolute top-0 left-0 overflow-hidden"
-            style={{ height: "250px" }}
+          <DialogContent
+            className="relative md:rounded-xl overflow-hidden"
+            aria-label="Pop-up Statistique"
           >
             <div
-              className="bg-cover bg-center w-full h-full absolute top-0 left-0"
-              style={{
-                backgroundImage: "url(/images/fcsilmi.jpg)",
-                filter: "blur(8px)",
-                transform: "scale(1.1)",
-              }}
-            />
-
-            <div className="w-full flex flex-row items-end absolute bottom-0 left-0 px-4 md:px-8">
+              className="w-full absolute top-0 left-0 overflow-hidden"
+              style={{ height: "250px" }}
+            >
               <div
-                className="contents"
-                style={{ width: "200px", height: "200px" }}
-              >
-                <Image src={data.cover} alt={name} width={200} height={200} />
-              </div>
+                className="bg-cover bg-center w-full h-full absolute top-0 left-0"
+                style={{
+                  backgroundImage: "url(/images/fcsilmi.jpg)",
+                  filter: "blur(8px)",
+                  transform: "scale(1.1)",
+                }}
+              />
 
-              <div className="flex flex-col ml-3 md:ml-6 mb-3 md:mb-6">
-                <h3 className="text-3xl text-white mb-4">{data.name}</h3>
-
-                <a
-                  className="focus:outline-none"
-                  style={{ color: "#772ce8", width: "fit-content" }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={data.twitch}
+              <div className="w-full flex flex-row items-end absolute bottom-0 left-0 px-4 md:px-8">
+                <div
+                  className="contents"
+                  style={{ width: "200px", height: "200px" }}
                 >
-                  <TwitchIcon width={30} />
-                </a>
+                  <Image src={data.cover} alt={name} width={200} height={200} />
+                </div>
+
+                <div className="flex flex-col ml-3 md:ml-6 mb-3 md:mb-6">
+                  <h3 className="text-3xl text-white mb-4">{data.name}</h3>
+
+                  <a
+                    className="focus:outline-none"
+                    style={{ color: "#772ce8", width: "fit-content" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={data.twitch}
+                  >
+                    <TwitchIcon width={30} />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <button
-            className="absolute text-3xl text-white top-2 right-2 px-3 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            onClick={() => setShowDialog(false)}
-          >
-            <span className="sr-only">Close</span>
-            <span aria-hidden>×</span>
-          </button>
+            <button
+              className="absolute text-3xl text-white top-2 right-2 px-3 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              onClick={() => setShowDialog(false)}
+            >
+              <span className="sr-only">Close</span>
+              <span aria-hidden>×</span>
+            </button>
 
-          <div style={{ paddingTop: "250px" }}>
-            <h2 className="text-xl uppercase mb-2">Bilan général</h2>
-
-            <RowBilan name="Note moyenne" value={data.rating} />
-            <RowBilan name="Matchs joués" value={data.gamesPlayed} />
-            <RowBilan name="Buts" value={data.goals} />
-            <RowBilan name="Passes" value={data.passesmade} />
-            <RowBilan name="Tacles" value={data.tacklesmade} />
-            <RowBilan name="Homme du match" value={data.mom} />
-            <RowBilan name="Cartons rouge" value={data.redcards} />
-          </div>
-        </Dialog>
+            <div style={{ paddingTop: "250px" }}>
+              <div className="flex flex-row items-center mb-2">
+                <h2 className="text-xl uppercase">Bilan</h2>
+                <Listbox defaultValue="total" value={value} onChange={setValue}>
+                  <ListboxOption value="total">Total</ListboxOption>
+                  {Object.keys(data.sessions).map((opt, i) => (
+                    <ListboxOption key={i} value={opt}>
+                      {opt}*
+                    </ListboxOption>
+                  ))}
+                </Listbox>
+              </div>
+              <RowBilan
+                name="Note moyenne"
+                value={
+                  value === "total" ? data.rating : data.sessions[value].rating
+                }
+              />
+              <RowBilan
+                name="Matchs joués"
+                value={
+                  value === "total"
+                    ? data.gamesPlayed
+                    : data.sessions[value].gamesPlayed
+                }
+              />
+              <RowBilan
+                name="Buts"
+                value={
+                  value === "total" ? data.goals : data.sessions[value].goals
+                }
+              />
+              <RowBilan
+                name="Passes"
+                value={
+                  value === "total"
+                    ? data.passesmade
+                    : data.sessions[value].passesmade
+                }
+              />
+              <RowBilan
+                name="Tacles"
+                value={
+                  value === "total"
+                    ? data.tacklesmade
+                    : data.sessions[value].tacklesmade
+                }
+              />
+              <RowBilan
+                name="Homme du match"
+                value={value === "total" ? data.mom : data.sessions[value].mom}
+              />
+              <RowBilan
+                name="Cartons rouge"
+                value={
+                  value === "total"
+                    ? data.redcards
+                    : data.sessions[value].redcards
+                }
+              />
+            </div>
+          </DialogContent>
+        </DialogOverlay>
       )}
     </>
   );
