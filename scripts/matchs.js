@@ -39,8 +39,17 @@ const fetchMatchs = async () => {
   return matchs;
 };
 
+const getImage = (club) => {
+  const url = `https://fifa21.content.easports.com/fifa/fltOnlineAssets/05772199-716f-417d-9fe0-988fa9899c4d/2021/fifaweb/crests/256x256`;
+  if (club.details.customKit.isCustomTeam === "1") {
+    return `${url}/l${club.details.customKit.crestAssetId}.png`;
+  }
+  return `${url}/l${club.details.teamId}.png`;
+};
+
 const parseMatch = (m) => {
   const contestant = Object.keys(m.clubs).find((id) => id !== FCSILMI);
+
   let match = {
     id: m.matchId,
     timestamp: m.timestamp,
@@ -58,9 +67,7 @@ const parseMatch = (m) => {
       },
       contestant: {
         name: m.clubs[contestant].details?.name.trim() || "--",
-        image: m.clubs[contestant].details
-          ? `https://fifa21.content.easports.com/fifa/fltOnlineAssets/05772199-716f-417d-9fe0-988fa9899c4d/2021/fifaweb/crests/256x256/l${m.clubs[contestant].details.customKit.crestAssetId}.png`
-          : "",
+        image: m.clubs[contestant].details ? getImage(m.clubs[contestant]) : "",
         goals: m.clubs[contestant].goals,
         shots: m.aggregate[contestant].shots,
         saves: m.aggregate[contestant].saves,
