@@ -1,7 +1,6 @@
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
 import Head from "next/head";
 import Image from "next/image";
-import useSWR from "swr";
 
 import { promises as fs } from "fs";
 import path from "path";
@@ -10,17 +9,10 @@ import Button from "../components/Button";
 import Info from "../components/Info";
 import Stats from "../components/Stats";
 import Matchs from "../components/Matchs";
-import fetcher from "../utils/fetcher.js";
 
 import "@reach/tabs/styles.css";
 
-export default function Home({ maxMatchsPages, matchs, players }) {
-  const { data } = useSWR(`/api/info`, fetcher);
-
-  if (!data) {
-    return null;
-  }
-
+export default function Home({ maxMatchsPages, matchs, players, info }) {
   return (
     <div>
       <Head>
@@ -30,7 +22,7 @@ export default function Home({ maxMatchsPages, matchs, players }) {
           content="Club FIFA PRO avec vos streamers préférés ! | Chaque Lundi 20h30 sur Twitch | Rediffs dispos sur Youtube"
         />
         <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-        <link rel="alternate icon" href="/images/favicon.ico" />
+        <link rel="alternate icon" href="/favicon.ico" />
         <link
           rel="mask-icon"
           href="/images/safari-pinned-tab.svg"
@@ -86,7 +78,7 @@ export default function Home({ maxMatchsPages, matchs, players }) {
           </div>
           <TabPanels>
             <TabPanel>
-              <Info info={data} />
+              <Info info={info} />
             </TabPanel>
             <TabPanel>
               <Stats players={players} />
@@ -107,10 +99,10 @@ export default function Home({ maxMatchsPages, matchs, players }) {
         <p className="text-gray-600 px-8 mb-4">
           *Toutes les statistiques des joueurs et des matchs sont calculées sur
           les données recueillis du site EA Sports. Ici nous n'avons pas pu
-          recueillir les données de 21 matchs.
+          recueillir les données de 20 matchs.
         </p>
         <p className="text-gray-600 px-8 mb-4">
-          **Logo du FC Silmi par @FcSilmi sur Twitter.
+          **Logo du FC Silmi par Sébastien Mortiers.
         </p>
         <div className="flex flex-row justify-center px-8">
           <a
@@ -130,6 +122,15 @@ export default function Home({ maxMatchsPages, matchs, players }) {
           >
             GitHub
           </a>
+
+          <a
+            className="text-gray-600 mx-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.twitch.tv/wbeuil"
+          >
+            William Beuil
+          </a>
         </div>
       </footer>
     </div>
@@ -143,12 +144,15 @@ export async function getStaticProps() {
   const matchsPages = await fs.readdir(matchsPath);
   const playersPath = path.join(dataDirectory, "players.json");
   const players = await fs.readFile(playersPath, "utf8");
+  const infoPath = path.join(dataDirectory, "info.json");
+  const info = await fs.readFile(infoPath, "utf8");
 
   return {
     props: {
       maxMatchsPages: matchsPages.length,
       matchs: JSON.parse(matchs),
       players: JSON.parse(players),
+      info: JSON.parse(info),
     },
   };
 }
