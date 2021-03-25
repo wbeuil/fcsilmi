@@ -114,7 +114,7 @@ const Matchs = ({ maxMatchsPages, matchs, players }) => {
 
             <AccordionPanel className="mt-8 focus:outline-none">
               <RowMatch
-                name="Tirs cadrés"
+                name="Tirs"
                 valueA={match.clubs.fcsilmi.shots}
                 valueB={match.clubs.contestant.shots}
               />
@@ -165,10 +165,7 @@ const Matchs = ({ maxMatchsPages, matchs, players }) => {
                         value={match.players[key].rating}
                       />
                       <RowPlayer name="Buts" value={match.players[key].goals} />
-                      <RowPlayer
-                        name="Tirs cadrés"
-                        value={match.players[key].shots}
-                      />
+                      <RowPlayer name="Tirs" value={match.players[key].shots} />
                       <RowPlayer
                         name="Arrêts"
                         value={match.players[key].saves}

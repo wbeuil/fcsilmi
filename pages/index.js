@@ -99,7 +99,7 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
         <p className="text-gray-600 px-8 mb-4">
           *Toutes les statistiques des joueurs et des matchs sont calculées sur
           les données recueillis du site EA Sports. Ici nous n'avons pas pu
-          recueillir les données de 20 matchs.
+          recueillir les données de 20 matchs des 2 premières sessions.
         </p>
         <p className="text-gray-600 px-8 mb-4">
           **Logo du FC Silmi par Sébastien Mortiers.

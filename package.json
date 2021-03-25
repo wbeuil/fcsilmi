@@ -13,6 +13,7 @@
   "dependencies": {
     "@reach/accordion": "^0.13.2",
     "@reach/dialog": "^0.13.2",
+    "@reach/listbox": "^0.13.2",
     "@reach/tabs": "^0.13.2",
     "@svgr/webpack": "^5.5.0",
     "next": "10.0.9",

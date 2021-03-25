@@ -52,6 +52,32 @@ body {
   @apply w-full focus:outline-none;
 }
 
+[data-reach-listbox-input] {
+  @apply ml-2;
+}
+
+[data-reach-listbox-popover],
+[data-reach-listbox-list] {
+  @apply focus:outline-none;
+}
+
+[data-reach-listbox-popover]:focus-within {
+  @apply outline-none shadow-none !important;
+}
+
+[data-reach-listbox-button] {
+  @apply text-xl border-none uppercase py-0 px-3 !important;
+  @apply rounded focus:outline-none focus:ring focus:border-blue-300;
+}
+
+[data-reach-listbox-option] {
+  @apply uppercase px-4 !important;
+}
+
+[data-reach-popover] {
+  @apply bg-gray-100 dark:bg-gray-900 !important;
+}
+
 [data-reach-dialog-content] {
   @apply bg-white dark:bg-gray-800 !important;
 }
