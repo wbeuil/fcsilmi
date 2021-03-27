@@ -124,6 +124,11 @@ const Information = ({ info }) => {
           {value === "total" ? (
             <>
               <RowBilan name="Total points" value={info.overallRankingPoints} />
+              <RowBilan name="Buts marqués" value={info.alltimeGoals} />
+              <RowBilan
+                name="Buts encaissés"
+                value={info.alltimeGoalsAgainst}
+              />
               <RowBilan name="Saisons disputées" value={info.seasons} />
               <RowBilan name="Meilleur division" value={info.bestDivision} />
               <RowBilan name="Titres remportés" value={info.titlesWon} />
@@ -143,11 +148,52 @@ const Information = ({ info }) => {
                 value={info.sessions[value].goalsAgainst}
               />
               <RowBilan name="Tirs" value={info.sessions[value].shots} />
+              <RowBilan
+                name="Tirs / Match"
+                value={(
+                  info.sessions[value].shots / info.sessions[value].games
+                ).toFixed(2)}
+              />
               <RowBilan name="Arrêts" value={info.sessions[value].saves} />
+              <RowBilan
+                name="Arrêts / Match"
+                value={(
+                  info.sessions[value].saves / info.sessions[value].games
+                ).toFixed(2)}
+              />
               <RowBilan name="Passes" value={info.sessions[value].passesmade} />
+              <RowBilan
+                name="Passes / Match"
+                value={(
+                  info.sessions[value].passattempts / info.sessions[value].games
+                ).toFixed(2)}
+              />
+              <RowBilan
+                name="TRP"
+                value={`${(
+                  (info.sessions[value].passesmade /
+                    info.sessions[value].passattempts) *
+                  100
+                ).toFixed(2)}%`}
+              />
               <RowBilan
                 name="Tacles"
                 value={info.sessions[value].tacklesmade}
+              />
+              <RowBilan
+                name="Tacles / Match"
+                value={(
+                  info.sessions[value].tackleattempts /
+                  info.sessions[value].games
+                ).toFixed(2)}
+              />
+              <RowBilan
+                name="TRT"
+                value={`${(
+                  (info.sessions[value].tacklesmade /
+                    info.sessions[value].tackleattempts) *
+                  100
+                ).toFixed(2)}%`}
               />
               <RowBilan
                 name="Cartons rouges"

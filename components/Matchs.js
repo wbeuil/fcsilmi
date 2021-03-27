@@ -36,6 +36,39 @@ const RowMatch = ({ name, valueA, valueB }) => {
   );
 };
 
+const MatchResult = ({ result }) => {
+  let score = { result: "", color: "" };
+
+  switch (result) {
+    case "1":
+      score = { result: "Victoire", color: "#34d399" };
+      break;
+    case "2":
+      score = { result: "Défaite", color: "#f87171" };
+      break;
+    case "4":
+      score = { result: "Nul", color: "#d1d5db" };
+      break;
+    case "10":
+      score = { result: "Défaite par abandon", color: "#f87171" };
+      break;
+    case "16385":
+      score = { result: "Victoire par abandon", color: "#34d399" };
+      break;
+    default:
+      break;
+  }
+
+  return (
+    <div
+      className="rounded mx-auto px-4"
+      style={{ backgroundColor: score.color }}
+    >
+      {score.result}
+    </div>
+  );
+};
+
 const Matchs = ({ maxMatchsPages, matchs, players }) => {
   const [arr, setArr] = useState(matchs);
   const [page, setPage] = useState(0);
@@ -66,6 +99,7 @@ const Matchs = ({ maxMatchsPages, matchs, players }) => {
             key={match.id}
             className="w-full bg-white dark:bg-gray-800 flex flex-col rounded-xl overflow-hidden shadow-xl p-4 md:p-8 mb-8"
           >
+            <MatchResult result={match.clubs.fcsilmi.result} />
             <div className="flex flex-row items-center">
               <div className="flex flex-row justify-between items-center w-1/2">
                 <div className="flex flex-col items-center">

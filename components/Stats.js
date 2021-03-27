@@ -126,6 +126,34 @@ const Player = ({ data, name = "IA", top, left }) => {
                   value === "total" ? data.goals : data.sessions[value].goals
                 }
               />
+              {name === "Ponce" && (
+                <>
+                  <RowBilan
+                    name="Buts encaissés"
+                    value={
+                      value === "total"
+                        ? data.goalsAgainst
+                        : data.sessions[value].goalsAgainst
+                    }
+                  />
+                  <RowBilan
+                    name="Arrêts"
+                    value={
+                      value === "total"
+                        ? data.saves
+                        : data.sessions[value].saves
+                    }
+                  />
+                  <RowBilan
+                    name="Arrêts / Match"
+                    value={(value === "total"
+                      ? data.saves / data.gamesPlayed
+                      : data.sessions[value].saves /
+                        data.sessions[value].gamesPlayed
+                    ).toFixed(2)}
+                  />
+                </>
+              )}
               <RowBilan
                 name="Passes"
                 value={
@@ -135,13 +163,51 @@ const Player = ({ data, name = "IA", top, left }) => {
                 }
               />
               <RowBilan
-                name="Tacles"
-                value={
-                  value === "total"
-                    ? data.tacklesmade
-                    : data.sessions[value].tacklesmade
-                }
+                name="Passes / Match"
+                value={(value === "total"
+                  ? data.passattempts / data.gamesPlayed
+                  : data.sessions[value].passattempts /
+                    data.sessions[value].gamesPlayed
+                ).toFixed(2)}
               />
+              <RowBilan
+                name="TRP"
+                value={`${(
+                  (value === "total"
+                    ? data.passesmade / data.passattempts
+                    : data.sessions[value].passesmade /
+                      data.sessions[value].passattempts) * 100
+                ).toFixed(2)}%`}
+              />
+              {name !== "Ponce" && (
+                <>
+                  <RowBilan
+                    name="Tacles"
+                    value={
+                      value === "total"
+                        ? data.tacklesmade
+                        : data.sessions[value].tacklesmade
+                    }
+                  />
+                  <RowBilan
+                    name="Tacles / Match"
+                    value={(value === "total"
+                      ? data.tackleattempts / data.gamesPlayed
+                      : data.sessions[value].tackleattempts /
+                        data.sessions[value].gamesPlayed
+                    ).toFixed(2)}
+                  />
+                  <RowBilan
+                    name="TRT"
+                    value={`${(
+                      (value === "total"
+                        ? data.tacklesmade / data.tackleattempts
+                        : data.sessions[value].tacklesmade /
+                          data.sessions[value].tackleattempts) * 100
+                    ).toFixed(2)}%`}
+                  />
+                </>
+              )}
               <RowBilan
                 name="Homme du match"
                 value={value === "total" ? data.mom : data.sessions[value].mom}

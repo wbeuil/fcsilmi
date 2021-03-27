@@ -7,7 +7,9 @@ const jsonPath = "./data/players.json";
 const emptyValue = () => ({
   gamesPlayed: 0,
   goals: 0,
+  goalsAgainst: 0,
   shots: 0,
+  saves: 0,
   passesmade: 0,
   passattempts: 0,
   tacklesmade: 0,
@@ -137,7 +139,9 @@ const parseSession = (session) => {
     Object.keys(match.players).map((key) => {
       p[key].gamesPlayed++;
       p[key].goals += parseInt(match.players[key].goals, 10);
+      p[key].goalsAgainst += parseInt(match.clubs.contestant.goals, 10);
       p[key].shots += parseInt(match.players[key].shots, 10);
+      p[key].saves += parseInt(match.players[key].saves, 10);
       p[key].passesmade += parseInt(match.players[key].passesmade, 10);
       p[key].passattempts += parseInt(match.players[key].passattempts, 10);
       p[key].tacklesmade += parseInt(match.players[key].tacklesmade, 10);
@@ -179,7 +183,9 @@ for (const match of matchs) {
   Object.keys(match.players).map((key) => {
     players[key].gamesPlayed++;
     players[key].goals += parseInt(match.players[key].goals, 10);
+    players[key].goalsAgainst += parseInt(match.clubs.contestant.goals, 10);
     players[key].shots += parseInt(match.players[key].shots, 10);
+    players[key].saves += parseInt(match.players[key].saves, 10);
     players[key].passesmade += parseInt(match.players[key].passesmade, 10);
     players[key].passattempts += parseInt(match.players[key].passattempts, 10);
     players[key].tacklesmade += parseInt(match.players[key].tacklesmade, 10);
