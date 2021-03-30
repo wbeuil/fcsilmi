@@ -101,6 +101,13 @@ fetchMatchs().then((res) => {
   const matchs = res.map((match) => parseMatch(match));
   const files = fs.readdirSync(matchsDirectoryPath);
 
+  files.sort((a, b) => {
+    const first = a.split(".")[0];
+    const second = b.split(".")[0];
+
+    return first - second;
+  });
+
   let tmp = [];
   files.forEach((file) => {
     const filePath = path.join(matchsDirectoryPath, file);
