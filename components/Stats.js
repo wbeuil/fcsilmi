@@ -126,6 +126,35 @@ const Player = ({ data, name = "IA", top, left }) => {
                   value === "total" ? data.goals : data.sessions[value].goals
                 }
               />
+              {name !== "Ponce" && (
+                <>
+                  <RowBilan
+                    name="Tirs"
+                    value={
+                      value === "total"
+                        ? data.shots
+                        : data.sessions[value].shots
+                    }
+                  />
+                  <RowBilan
+                    name="Tirs / Match"
+                    value={(value === "total"
+                      ? data.shots / data.gamesPlayed
+                      : data.sessions[value].shots /
+                        data.sessions[value].gamesPlayed
+                    ).toFixed(2)}
+                  />
+                  <RowBilan
+                    name="TRB"
+                    value={`${(
+                      (value === "total"
+                        ? data.goals / data.shots
+                        : data.sessions[value].goals /
+                          data.sessions[value].shots) * 100
+                    ).toFixed(2)}%`}
+                  />
+                </>
+              )}
               {name === "Ponce" && (
                 <>
                   <RowBilan
