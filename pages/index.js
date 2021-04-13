@@ -98,7 +98,7 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
         <hr className="w-full border-1 border-gray-300 mb-8" />
         <p className="text-gray-600 px-8 mb-4">
           *Toutes les statistiques des joueurs et des matchs sont calculées sur
-          les données recueillis du site EA Sports. Ici nous n'avons pas pu
+          les données recueillies du site EA Sports. Ici nous n'avons pas pu
           recueillir les données de 20 matchs des 2 premières sessions.
         </p>
         <p className="text-gray-600 px-8 mb-4">

@@ -292,14 +292,14 @@ const Stats = ({ players }) => {
       </svg>
 
       <Player data={players["Ponce"]} name="Ponce" top="95%" left="50%" />
-      <Player data={players["Rivenzi"]} name="Rivenzi" top="75%" left="20%" />
+      <Player data={players["Etoiles"]} name="Etoiles" top="75%" left="20%" />
       <Player top="80%" left="40%" />
       <Player top="80%" left="60%" />
       <Player top="75%" left="80%" />
       <Player data={players["MisterMV"]} name="MisterMV" top="55%" left="50%" />
       <Player data={players["Domingo"]} name="Domingo" top="45%" left="35%" />
       <Player data={players["Xari"]} name="Xari" top="45%" left="65%" />
-      <Player data={players["Etoiles"]} name="Etoiles" top="25%" left="25%" />
+      <Player data={players["Rivenzi"]} name="Rivenzi" top="25%" left="25%" />
       <Player data={players["Jiraya"]} name="Jiraya" top="25%" left="75%" />
       <Player data={players["DFG"]} name="DFG" top="15%" left="50%" />
     </div>
