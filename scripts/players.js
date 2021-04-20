@@ -17,6 +17,8 @@ const emptyValue = () => ({
   redcards: 0,
   mom: 0,
   rating: 0,
+  assists: 0,
+  cleansheets: 0,
 });
 
 const players = {
@@ -149,6 +151,8 @@ const parseSession = (session) => {
       p[key].redcards += parseInt(match.players[key].redcards, 10);
       p[key].mom += parseInt(match.players[key].mom, 10);
       p[key].rating += parseFloat(match.players[key].rating);
+      p[key].assists += parseInt(match.players[key].assists, 10);
+      p[key].cleansheets += parseInt(match.players[key].cleansheets, 10);
     });
   }
 
@@ -203,6 +207,8 @@ for (const match of matchs) {
     players[key].redcards += parseInt(match.players[key].redcards, 10);
     players[key].mom += parseInt(match.players[key].mom, 10);
     players[key].rating += parseFloat(match.players[key].rating);
+    players[key].assists += parseInt(match.players[key].assists, 10);
+    players[key].cleansheets += parseInt(match.players[key].cleansheets, 10);
   });
 }
 

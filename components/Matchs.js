@@ -201,6 +201,10 @@ const Matchs = ({ maxMatchsPages, matchs, players }) => {
                       <RowPlayer name="Buts" value={match.players[key].goals} />
                       <RowPlayer name="Tirs" value={match.players[key].shots} />
                       <RowPlayer
+                        name="Passes décisives"
+                        value={match.players[key].assists}
+                      />
+                      <RowPlayer
                         name="Arrêts"
                         value={match.players[key].saves}
                       />

@@ -129,6 +129,14 @@ const Player = ({ data, name = "IA", top, left }) => {
               {name !== "Ponce" && (
                 <>
                   <RowBilan
+                    name="Passes décisives"
+                    value={
+                      value === "total"
+                        ? data.assists
+                        : data.sessions[value].assists
+                    }
+                  />
+                  <RowBilan
                     name="Tirs"
                     value={
                       value === "total"
@@ -157,6 +165,14 @@ const Player = ({ data, name = "IA", top, left }) => {
               )}
               {name === "Ponce" && (
                 <>
+                  <RowBilan
+                    name="Clean sheets"
+                    value={
+                      value === "total"
+                        ? data.cleansheets
+                        : data.sessions[value].cleansheets
+                    }
+                  />
                   <RowBilan
                     name="Buts encaissés"
                     value={

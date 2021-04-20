@@ -272,8 +272,11 @@ const Information = ({ info }) => {
                   case "losses":
                     color = "bg-red-400";
                     break;
-                  default:
+                  case "ties":
                     color = "bg-gray-300";
+                    break;
+                  default:
+                    color = "border border-gray-200";
                     break;
                 }
 

@@ -47,6 +47,17 @@ const getImage = (club) => {
   return `${url}/l${club.details.teamId}.png`;
 };
 
+const getCleanSheets = (match) => {
+  switch (match.clubs.fcsilmi.result) {
+    case "1":
+    case "4":
+    case "16385":
+      return match.clubs.contestant.goals === "0" ? "1" : "0";
+    default:
+      return "0";
+  }
+};
+
 const parseMatch = (m) => {
   const contestant = Object.keys(m.clubs).find((id) => id !== FCSILMI);
 
@@ -92,8 +103,15 @@ const parseMatch = (m) => {
       passattempts: m.players[FCSILMI][key].passattempts,
       redcards: m.players[FCSILMI][key].redcards,
       mom: m.players[FCSILMI][key].mom,
+      assists: m.players[FCSILMI][key].assists,
+      cleansheets: "0",
     };
   });
+
+  if (match.players["Ponce"]) {
+    match.players["Ponce"].cleansheets = getCleanSheets(match);
+  }
+
   return match;
 };
 
