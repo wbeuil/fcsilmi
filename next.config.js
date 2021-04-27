@@ -10,6 +10,28 @@ module.exports = {
       "fifa21.content.easports.com",
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/fonts/DIN-Condensed.woff2",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
