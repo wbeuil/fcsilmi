@@ -4,10 +4,10 @@
 
 @font-face {
   font-family: "DIN Condensed";
-  src: url("/fonts/DIN-Condensed.ttf");
+  src: url(/fonts/DIN-Condensed.woff2) format("woff2");
   font-style: normal;
-  font-weight: normal;
-  font-display: swap;
+  font-weight: 400;
+  font-display: optional;
 }
 
 body {

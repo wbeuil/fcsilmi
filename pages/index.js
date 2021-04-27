@@ -30,9 +30,10 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
         />
         <link
           rel="preload"
-          href="/fonts/DIN-Condensed.ttf"
+          href="/fonts/DIN-Condensed.woff2"
           as="font"
-          crossOrigin=""
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         <meta name="theme-color" content="#eeeeee" />
         <meta property="og:type" content="website" />
