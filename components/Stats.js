@@ -56,7 +56,8 @@ const Player = ({ data, name = "IA", top, left }) => {
               <div
                 className="bg-cover bg-center w-full h-full absolute top-0 left-0"
                 style={{
-                  backgroundImage: "url(/images/fcsilmi.jpg)",
+                  backgroundImage: "url(/images/fcsilmi.png)",
+                  backgroundColor: "#141414",
                   filter: "blur(8px)",
                   transform: "scale(1.1)",
                 }}

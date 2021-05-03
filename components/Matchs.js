@@ -105,7 +105,7 @@ const Matchs = ({ maxMatchsPages, matchs, players }) => {
                 <div className="flex flex-col items-center">
                   <div style={{ width: "100px", height: "100px" }}>
                     <Image
-                      src="/images/fcsilmi-flag.png"
+                      src="/images/fcsilmi.png"
                       alt="FC Silmi"
                       width={100}
                       height={100}

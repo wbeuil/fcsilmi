@@ -59,7 +59,7 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
             style={{ width: "120px", height: "120px" }}
           >
             <Image
-              src="/images/fcsilmi.jpg"
+              src="/images/fcsilmi.png"
               alt="Logo du FC Silmi"
               width={120}
               height={120}
