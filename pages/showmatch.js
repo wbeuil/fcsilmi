@@ -218,11 +218,11 @@ const Showmatch = () => {
       <footer className="max-w-2xl mx-auto w-full pb-8 px-4 md:px-0">
         <hr className="w-full border-1 border-gray-300 mb-8" />
         <p className="text-gray-600 px-8 mb-4">
-          * Merci à tous ceux qui ont contribué de près ou de loin à ce site
-          internet, notamment Sébastien Mortiers et Spooky_ElBosoh.
+          * Direction Artistique du FC Silmi par l'équipe de Domingo.
         </p>
         <p className="text-gray-600 px-8 mb-4">
-          ** Direction Artistique du FC Silmi par l'équipe de Domingo.
+          ** Merci à tous ceux qui ont contribué de près ou de loin à cette
+          page, notamment Sébastien Mortiers et Spooky_ElBosoh.
         </p>
         <div className="flex flex-row justify-center px-8">
           <a

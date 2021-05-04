@@ -81,13 +81,16 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
           <Link href="/showmatch">
             <a className="relative text-xl uppercase p-1 rounded focus:outline-none focus:ring focus:border-blue-300 hover:text-blue-400">
               Showmatch FCSilmi vs TeamCrouton
-              <span class="absolute flex h-3 w-3 top-0 -right-2" aria-hidden>
+              <span
+                className="absolute flex h-3 w-3 top-0 -right-2"
+                aria-hidden
+              >
                 <span
-                  class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
                   style={{ backgroundColor: "#fdd170" }}
                 />
                 <span
-                  class="relative inline-flex rounded-full h-3 w-3"
+                  className="relative inline-flex rounded-full h-3 w-3"
                   style={{ backgroundColor: "#f2b549" }}
                 />
               </span>
@@ -114,12 +117,15 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
       <footer className="max-w-2xl mx-auto w-full pb-8 px-4 md:px-0">
         <hr className="w-full border-1 border-gray-300 mb-8" />
         <p className="text-gray-600 px-8 mb-4">
-          *Toutes les statistiques des joueurs et des matchs sont calculées sur
+          * Toutes les statistiques des joueurs et des matchs sont calculées sur
           les données recueillies du site EA Sports. Ici nous n'avons pas pu
           recueillir les données de 20 matchs des 2 premières sessions.
         </p>
         <p className="text-gray-600 px-8 mb-4">
-          **Logo du FC Silmi par Sébastien Mortiers.
+          ** Direction Artistique du FC Silmi par l'équipe de Domingo.
+        </p>
+        <p className="text-gray-600 px-8 mb-4">
+          *** Merci à Sébastien Mortiers d'avoir contribué à cette page.
         </p>
         <div className="flex flex-row justify-center px-8">
           <a
