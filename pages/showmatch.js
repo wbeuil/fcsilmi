@@ -34,6 +34,14 @@ const Showmatch = () => {
           property="og:description"
           content="Showmatch FCSilmi vs TeamCrouton | Jeudi 6 Mai 21h"
         />
+
+        <meta
+          property="og:image"
+          content="https://fcsilmi.club/images/showmatch.jpeg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="628" />
+        <meta property="og:locale" content="fr_FR" />
       </Head>
 
       <div className="fixed z-50 top-8 right-8">
