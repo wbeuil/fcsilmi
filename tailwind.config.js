@@ -11,6 +11,9 @@ module.exports = {
       width: {
         double: "200%",
       },
+      inset: {
+        15: "15%",
+      },
     },
   },
   variants: {

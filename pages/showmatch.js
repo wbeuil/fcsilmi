@@ -28,13 +28,28 @@ const Showmatch = () => {
           name="description"
           content="Showmatch FCSilmi vs TeamCrouton | Jeudi 6 Mai 21h"
         />
-
+        <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <link
+          rel="mask-icon"
+          href="/images/safari-pinned-tab.svg"
+          color="#eeeeee"
+        />
+        <link
+          rel="preload"
+          href="/fonts/DIN-Condensed.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <meta name="theme-color" content="#eeeeee" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://fcsilmi.club/showmatch" />
         <meta property="og:title" content="Showmatch FCSilmi vs TeamCrouton" />
         <meta
           property="og:description"
           content="Showmatch FCSilmi vs TeamCrouton | Jeudi 6 Mai 21h"
         />
-
         <meta
           property="og:image"
           content="https://fcsilmi.club/images/showmatch.jpeg"
@@ -44,16 +59,13 @@ const Showmatch = () => {
         <meta property="og:locale" content="fr_FR" />
       </Head>
 
-      <div className="fixed z-50 top-8 right-8">
+      <div className="fixed z-50 top-8 right-8 md:right-15">
         <Button />
       </div>
 
       <main className="flex flex-col items-center">
         <div className="relative mb-8 md:mb-16">
-          <div className="absolute z-10 top-0 left-0 w-full h-full gradient-left dark:gradient-left-dark" />
-          <div className="absolute z-10 top-0 right-0 w-full h-full gradient-right dark:gradient-right-dark" />
-          <div className="absolute z-10 top-0 left-0 w-full h-full gradient-top dark:gradient-top-dark" />
-          <div className="absolute z-10 bottom-0 left-0 w-full h-full gradient-bottom dark:gradient-bottom-dark" />
+          <div className="absolute z-10 top-0 left-0 w-full h-full overlay dark:overlay-dark" />
           <Image
             src="/images/showmatch.jpeg"
             alt="Showmatch FCSilmi vs TeamCrouton"
@@ -85,12 +97,12 @@ const Showmatch = () => {
                 width={50}
                 height={50}
               />
-              <p className="text-lg md:text-3xl ml-2">
-                {(fcsilmi / total) * 100}%
+              <p className="text-lg md:text-3xl md:ml-2 w-9 md:w-12">
+                {((fcsilmi / total) * 100).toFixed(0)}%
               </p>
             </div>
 
-            <div className="flex flex-col items-center mx-4">
+            <div className="flex flex-col items-center mx-2 md:mx-4">
               <div className="w-32 md:w-96 h-2.5 rounded border border-gray-200 flex flex-row overflow-hidden mt-8">
                 <div
                   className="h-full"
@@ -111,8 +123,8 @@ const Showmatch = () => {
             </div>
 
             <div className="flex flex-row items-center">
-              <p className="text-lg md:text-3xl mr-4">
-                {(crouton / total) * 100}%
+              <p className="text-lg md:text-3xl text-right mr-2 md:mr-4 w-9 md:w-12">
+                {((crouton / total) * 100).toFixed(0)}%
               </p>
               <Image
                 src="/images/crouton.png"
@@ -138,8 +150,8 @@ const Showmatch = () => {
             Composition FC Silmi
           </h2>
 
-          <div className="overflow-auto">
-            <div className="w-double md:w-full overflow-scroll flex flex-row mb-8">
+          <div className="overflow-x-auto">
+            <div className="w-double md:w-full overflow-x-scroll flex flex-row mb-8">
               <ShowmatchCard src="/images/showmatch-ponpon.png" alt="Ponpon" />
               <ShowmatchCard
                 src="/images/showmatch-rayou.png"
@@ -173,8 +185,8 @@ const Showmatch = () => {
             Composition Crouton GS
           </h2>
 
-          <div className="overflow-auto">
-            <div className="w-double md:w-full overflow-scroll flex flex-row mb-8">
+          <div className="overflow-x-auto">
+            <div className="w-double md:w-full overflow-x-scroll flex flex-row mb-8">
               <ShowmatchCard
                 src="/images/showmatch-lebou.png"
                 alt="J.P. Mumu"
@@ -195,7 +207,7 @@ const Showmatch = () => {
               />
               <ShowmatchCard src="/images/showmatch-doc.png" alt="Jason D." />
               <ShowmatchCard
-                src="/images/showmatch-roro.png"
+                src="/images/showmatch-romain.png"
                 alt="Megacoolos"
               />
             </div>

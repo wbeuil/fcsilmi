@@ -14,6 +14,10 @@ body {
   @apply bg-gray-100 dark:bg-gray-900;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 [data-reach-tabs] {
   @apply flex flex-col items-center w-full;
 }
@@ -91,47 +95,15 @@ body {
 }
 
 @layer utilities {
-  .gradient-left {
-    background-image: linear-gradient(to left, transparent 90%, #f3f4f6);
-  }
-
-  .gradient-right {
-    background-image: linear-gradient(to right, transparent 90%, #f3f4f6);
-  }
-
-  .gradient-top {
-    background-image: linear-gradient(to top, transparent 90%, #f3f4f6);
-  }
-
-  .gradient-bottom {
-    background-image: linear-gradient(
-      to bottom,
-      transparent 90%,
-      #f3f4f6,
-      #f3f4f6
-    );
+  .overlay {
+    background-image: url(/images/light-overlay.png);
+    background-size: contain;
   }
 
   @variants dark {
-    .gradient-left-dark {
-      background-image: linear-gradient(to left, transparent 80%, #111827);
-    }
-
-    .gradient-right-dark {
-      background-image: linear-gradient(to right, transparent 70%, #111827);
-    }
-
-    .gradient-top-dark {
-      background-image: linear-gradient(to top, transparent 90%, #111827);
-    }
-
-    .gradient-bottom-dark {
-      background-image: linear-gradient(
-        to bottom,
-        transparent 95%,
-        #111827,
-        #111827
-      );
+    .overlay-dark {
+      background-image: url(/images/dark-overlay.png);
+      background-size: contain;
     }
   }
 }
