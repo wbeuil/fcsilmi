@@ -89,3 +89,49 @@ body {
     min-height: 100%;
   }
 }
+
+@layer utilities {
+  .gradient-left {
+    background-image: linear-gradient(to left, transparent 90%, #f3f4f6);
+  }
+
+  .gradient-right {
+    background-image: linear-gradient(to right, transparent 90%, #f3f4f6);
+  }
+
+  .gradient-top {
+    background-image: linear-gradient(to top, transparent 90%, #f3f4f6);
+  }
+
+  .gradient-bottom {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 90%,
+      #f3f4f6,
+      #f3f4f6
+    );
+  }
+
+  @variants dark {
+    .gradient-left-dark {
+      background-image: linear-gradient(to left, transparent 80%, #111827);
+    }
+
+    .gradient-right-dark {
+      background-image: linear-gradient(to right, transparent 70%, #111827);
+    }
+
+    .gradient-top-dark {
+      background-image: linear-gradient(to top, transparent 90%, #111827);
+    }
+
+    .gradient-bottom-dark {
+      background-image: linear-gradient(
+        to bottom,
+        transparent 95%,
+        #111827,
+        #111827
+      );
+    }
+  }
+}

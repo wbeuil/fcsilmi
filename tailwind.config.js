@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         sans: ["DIN Condensed", ...fontFamily.sans],
       },
+      width: {
+        double: "200%",
+      },
     },
   },
   variants: {

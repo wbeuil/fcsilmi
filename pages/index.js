@@ -107,7 +107,7 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
         </p>
         <div className="flex flex-row justify-center px-8">
           <a
-            className="text-gray-600 mx-2"
+            className="text-gray-600 mx-2 p-1 rounded focus:outline-none focus:ring focus:border-blue-300"
             target="_blank"
             rel="noopener noreferrer"
             href="https://twitter.com/fcsilmi"
@@ -116,7 +116,7 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
           </a>
 
           <a
-            className="text-gray-600 mx-2"
+            className="text-gray-600 mx-2 p-1 rounded focus:outline-none focus:ring focus:border-blue-300"
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/wbeuil/fcsilmi"
@@ -125,7 +125,7 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
           </a>
 
           <a
-            className="text-gray-600 mx-2"
+            className="text-gray-600 mx-2 p-1 rounded focus:outline-none focus:ring focus:border-blue-300"
             target="_blank"
             rel="noopener noreferrer"
             href="https://www.twitch.tv/wbeuil"
