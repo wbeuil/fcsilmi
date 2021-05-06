@@ -1,10 +1,13 @@
+import { useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import useSWR from "swr";
 
 import Button from "../components/Button";
+import TeamCard from "../components/TeamCard";
 import ShowmatchComposition from "../icons/showmatch-composition.svg";
 import Forward from "../icons/forward.svg";
+import Twitter from "../icons/twitter.svg";
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -14,19 +17,28 @@ const ShowmatchCard = ({ src, alt }) => (
   </div>
 );
 
+const TWEET_TEXT =
+  "J'affiche mon appartenance pour le #showmatch du FC Silmi vs Team Crouton ce Jeudi 6 Mai!";
+
 const Showmatch = () => {
+  const [team, setTeam] = useState("fcsilmi");
   const { data } = useSWR("/api/poll", fetcher, { refreshInterval: 5000 });
   const fcsilmi = data?.poll?.votes[0] || 0;
   const crouton = data?.poll?.votes[1] || 0;
   const total = fcsilmi + crouton;
+  const permalink = encodeURIComponent(
+    `https://fcsilmi.club/showmatch/${team}`
+  );
+  const text = encodeURIComponent(TWEET_TEXT);
+  const tweetUrl = `https://twitter.com/intent/tweet?url=${permalink}&text=${text}`;
 
   return (
     <div>
       <Head>
-        <title>Showmatch FCSilmi vs TeamCrouton</title>
+        <title>Showmatch - FC Silmi vs Team Crouton</title>
         <meta
           name="description"
-          content="Showmatch FCSilmi vs TeamCrouton | Jeudi 6 Mai 21h"
+          content="Rendez-vous Jeudi 6 Mai à 21h pour un Showmatch entre le FC Silmi et la Team Crouton!"
         />
         <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
         <link rel="alternate icon" href="/favicon.ico" />
@@ -45,10 +57,13 @@ const Showmatch = () => {
         <meta name="theme-color" content="#eeeeee" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://fcsilmi.club/showmatch" />
-        <meta property="og:title" content="Showmatch FCSilmi vs TeamCrouton" />
+        <meta
+          property="og:title"
+          content="Showmatch - FC Silmi vs Team Crouton"
+        />
         <meta
           property="og:description"
-          content="Showmatch FCSilmi vs TeamCrouton | Jeudi 6 Mai 21h"
+          content="Rendez-vous Jeudi 6 Mai à 21h pour un Showmatch entre le FC Silmi et la Team Crouton!"
         />
         <meta
           property="og:image"
@@ -57,6 +72,8 @@ const Showmatch = () => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="628" />
         <meta property="og:locale" content="fr_FR" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@wbeuil" />
       </Head>
 
       <div className="fixed z-50 top-8 right-8 md:right-15">
@@ -74,7 +91,7 @@ const Showmatch = () => {
           />
         </div>
 
-        <div className="w-full md:w-auto px-4">
+        <div className="w-full md:w-auto my-8 md:my-16 px-4">
           <h1 className="font-bold text-2xl md:text-4xl text-center mb-4 md:mb-8">
             <a
               href="https://www.strawpoll.me/45221011"
@@ -136,6 +153,53 @@ const Showmatch = () => {
           </div>
         </div>
 
+        <div className="w-full md:w-auto my-8 md:my-16 px-4">
+          <h1 className="font-bold text-2xl md:text-4xl text-center mb-4 md:mb-8">
+            Soutiens ton équipe jusqu'au bout !
+          </h1>
+          <TeamCard team={team} />
+          <div className="flex flex-row justify-between mt-4">
+            <div className="flex flex-row">
+              <button
+                className="w-12 mr-2 flex items-center justify-center rounded focus:outline-none focus:ring focus:border-blue-300"
+                disabled={team === "fcsilmi"}
+                onClick={() => setTeam("fcsilmi")}
+                style={{ opacity: team === "fcsilmi" ? "0.2" : "1" }}
+              >
+                <Image
+                  src="/images/fcsilmi.png"
+                  alt="FCSilmi"
+                  width={50}
+                  height={50}
+                />
+              </button>
+              <button
+                className="w-12 flex items-center justify-center rounded focus:outline-none focus:ring focus:border-blue-300"
+                disabled={team === "croutongs"}
+                onClick={() => setTeam("croutongs")}
+                style={{ opacity: team === "croutongs" ? "0.2" : "1" }}
+              >
+                <Image
+                  src="/images/crouton.png"
+                  alt="TeamCrouton"
+                  width={34}
+                  height={34}
+                />
+              </button>
+            </div>
+            <div className="flex flex-row">
+              <a
+                className="w-12 flex items-center justify-center rounded focus:outline-none focus:ring focus:border-blue-300"
+                href={tweetUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Twitter width={34} />
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div className="w-full my-8 md:my-16 px-4">
           <ShowmatchComposition
             className="m-auto"
@@ -145,7 +209,7 @@ const Showmatch = () => {
           />
         </div>
 
-        <div className="mb-8 md:mb-16">
+        <div className="my-8 md:my-16">
           <h2 className="font-bold text-2xl md:text-4xl text-center mb-8">
             Composition FC Silmi
           </h2>

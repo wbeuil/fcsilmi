@@ -86,11 +86,23 @@ body {
   @apply bg-white dark:bg-gray-800 !important;
 }
 
+.team-card {
+  width: 325px;
+  height: 125px;
+}
+
 @media (max-width: 767px) {
   [data-reach-dialog-content] {
     width: 100vw !important;
     margin: 0 !important;
     min-height: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .team-card {
+    width: 650px;
+    height: 250px;
   }
 }
 
