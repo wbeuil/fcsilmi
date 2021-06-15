@@ -94,6 +94,15 @@ const players = {
     ...emptyValue(),
     sessions: {},
   },
+  Loann: {
+    cover: "/images/jiraya.png",
+    image:
+      "https://static-cdn.jtvnw.net/jtv_user_pictures/27f7d31a-193e-4ba8-b2a3-b8e9e1ac3894-profile_image-70x70.png",
+    name: "Lolo",
+    twitch: "https://www.twitch.tv/low4n",
+    ...emptyValue(),
+    sessions: {},
+  },
 };
 
 const listMatchsBySessions = (matchs) => {
@@ -135,6 +144,7 @@ const parseSession = (session) => {
     Ponce: emptyValue(),
     DFG: emptyValue(),
     Jiraya: emptyValue(),
+    Loann: emptyValue(),
   };
 
   for (const match of session) {
@@ -159,6 +169,10 @@ const parseSession = (session) => {
   Object.keys(p).map((key) => {
     p[key].rating /= p[key].gamesPlayed;
     p[key].rating = p[key].rating.toFixed(2);
+
+    if (isNaN(p[key].rating)) {
+      p[key].rating = "-";
+    }
   });
 
   return p;

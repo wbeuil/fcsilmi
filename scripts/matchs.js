@@ -15,6 +15,7 @@ const ids = {
   1902980612: "Jiraya",
   1003508400420: "DFG",
   1005652352361: "Xari",
+  1690794610: "Loann",
 };
 
 const nbr = process.argv[2] || "5";
