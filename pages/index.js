@@ -78,24 +78,6 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
             </TabList>
             <Button />
           </div>
-          <Link href="/showmatch">
-            <a className="relative text-xl uppercase p-1 rounded focus:outline-none focus:ring focus:border-blue-300 hover:text-blue-400">
-              Showmatch FCSilmi vs TeamCrouton
-              <span
-                className="absolute flex h-3 w-3 top-0 -right-2"
-                aria-hidden
-              >
-                <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                  style={{ backgroundColor: "#fdd170" }}
-                />
-                <span
-                  className="relative inline-flex rounded-full h-3 w-3"
-                  style={{ backgroundColor: "#f2b549" }}
-                />
-              </span>
-            </a>
-          </Link>
           <TabPanels>
             <TabPanel>
               <Info info={info} />
@@ -128,6 +110,12 @@ export default function Home({ maxMatchsPages, matchs, players, info }) {
           *** Merci à Sébastien Mortiers d'avoir contribué à cette page.
         </p>
         <div className="flex flex-row justify-center px-8">
+          <Link href="/showmatch">
+            <a className="text-gray-600 mx-2 p-1 rounded focus:outline-none focus:ring focus:border-blue-300">
+              Showmatch
+            </a>
+          </Link>
+
           <a
             className="text-gray-600 mx-2 p-1 rounded focus:outline-none focus:ring focus:border-blue-300"
             target="_blank"

@@ -95,7 +95,7 @@ const players = {
     sessions: {},
   },
   Loann: {
-    cover: "/images/jiraya.png",
+    cover: "/images/loann.png",
     image:
       "https://static-cdn.jtvnw.net/jtv_user_pictures/27f7d31a-193e-4ba8-b2a3-b8e9e1ac3894-profile_image-70x70.png",
     name: "Lolo",

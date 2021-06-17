@@ -276,50 +276,67 @@ const Player = ({ data, name = "IA", top, left }) => {
 
 const Stats = ({ players }) => {
   return (
-    <div className="w-full relative mx-auto my-8" style={{ maxWidth: "450px" }}>
-      <svg
-        className="rounded-xl mb-16"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 556 832"
-        width="100%"
-        style={{
-          maxWidth: "450px",
-          background: "#6db543",
-          backgroundImage: "url(/images/background.png)",
-          backgroundSize: "contain",
-        }}
+    <>
+      <div
+        className="w-full relative mx-auto my-8"
+        style={{ maxWidth: "450px" }}
       >
-        <g
-          className="stroke-current text-white stroke-2"
-          transform="translate(540 16) rotate(90)"
-          style={{ fill: "none" }}
+        <svg
+          className="rounded-xl mb-8"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 556 832"
+          width="100%"
+          style={{
+            maxWidth: "450px",
+            background: "#6db543",
+            backgroundImage: "url(/images/background.png)",
+            backgroundSize: "contain",
+          }}
         >
-          <g>
-            <rect y="0" x="0" width="800" height="524" />
-            <line x1="400" y1="524" x2="400" y2="0" />
-            <circle cx="400" cy="262" r="69.71677559912854" />
-            <circle className="fill-current" cx="92" cy="262" r="2" />
-            <circle className="fill-current" cx="708" cy="262" r="2" />
-            <path d="M0,413.43600000000004L136,413.43600000000004L136,110.56399999999996L0,110.56399999999996" />
-            <path d="M800,413.43600000000004L664,413.43600000000004L664,110.56399999999996L800,110.56399999999996" />
-            <path d="M0,331.168L46.4,331.168L46.4,192.832L0,192.832" />
-            <path d="M800,331.168L753.6,331.168L753.6,192.832L800,192.832" />
+          <g
+            className="stroke-current text-white stroke-2"
+            transform="translate(540 16) rotate(90)"
+            style={{ fill: "none" }}
+          >
+            <g>
+              <rect y="0" x="0" width="800" height="524" />
+              <line x1="400" y1="524" x2="400" y2="0" />
+              <circle cx="400" cy="262" r="69.71677559912854" />
+              <circle className="fill-current" cx="92" cy="262" r="2" />
+              <circle className="fill-current" cx="708" cy="262" r="2" />
+              <path d="M0,413.43600000000004L136,413.43600000000004L136,110.56399999999996L0,110.56399999999996" />
+              <path d="M800,413.43600000000004L664,413.43600000000004L664,110.56399999999996L800,110.56399999999996" />
+              <path d="M0,331.168L46.4,331.168L46.4,192.832L0,192.832" />
+              <path d="M800,331.168L753.6,331.168L753.6,192.832L800,192.832" />
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
 
-      <Player data={players["Ponce"]} name="Ponce" top="95%" left="50%" />
-      <Player data={players["Etoiles"]} name="Etoiles" top="75%" left="20%" />
-      <Player top="80%" left="40%" />
-      <Player top="80%" left="60%" />
-      <Player top="75%" left="80%" />
-      <Player data={players["MisterMV"]} name="MisterMV" top="55%" left="50%" />
-      <Player data={players["Domingo"]} name="Domingo" top="45%" left="35%" />
-      <Player data={players["Xari"]} name="Xari" top="45%" left="65%" />
-      <Player data={players["Rivenzi"]} name="Rivenzi" top="25%" left="25%" />
-      <Player data={players["Jiraya"]} name="Jiraya" top="25%" left="75%" />
-      <Player data={players["DFG"]} name="DFG" top="15%" left="50%" />
-    </div>
+        <Player data={players["Ponce"]} name="Ponce" top="95%" left="50%" />
+        <Player data={players["Etoiles"]} name="Etoiles" top="75%" left="20%" />
+        <Player top="80%" left="40%" />
+        <Player top="80%" left="60%" />
+        <Player top="75%" left="80%" />
+        <Player
+          data={players["MisterMV"]}
+          name="MisterMV"
+          top="55%"
+          left="50%"
+        />
+        <Player data={players["Domingo"]} name="Domingo" top="45%" left="35%" />
+        <Player data={players["Xari"]} name="Xari" top="45%" left="65%" />
+        <Player data={players["Rivenzi"]} name="Rivenzi" top="25%" left="25%" />
+        <Player data={players["Jiraya"]} name="Jiraya" top="25%" left="75%" />
+        <Player data={players["DFG"]} name="DFG" top="15%" left="50%" />
+      </div>
+      <div
+        className="w-full relative mx-auto mb-32"
+        style={{ maxWidth: "450px" }}
+      >
+        <p className="text-2xl text-center uppercase">Sur le banc</p>
+        <Player data={players["Loann"]} name="Loann" top="75px" left="25px" />
+      </div>
+    </>
   );
 };
 
