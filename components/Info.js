@@ -71,7 +71,7 @@ const Heading = ({ name, options, value, onChange, listBox = false }) => {
           <ListboxOption value="total">Total</ListboxOption>
           {options.map((opt, i) => (
             <ListboxOption key={i} value={opt}>
-              {opt}*
+              {opt}
             </ListboxOption>
           ))}
         </Listbox>

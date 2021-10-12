@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-const matchsDirectoryPath = path.join(__dirname, "../data/matchs");
-const jsonPath = "./data/players.json";
+const matchsDirectoryPath = path.join(__dirname, "../data/season2/matchs");
+const jsonPath = "./data/season2/players.json";
 
 const emptyValue = () => ({
   gamesPlayed: 0,

@@ -2,15 +2,16 @@ const fetch = require("node-fetch");
 const path = require("path");
 const fs = require("fs");
 
-const matchsDirectoryPath = path.join(__dirname, "../data/matchs");
-const jsonPath = "./data/info.json";
+const FCSILMI = "3130723";
+const matchsDirectoryPath = path.join(__dirname, "../data/season2/matchs");
+const jsonPath = "./data/season2/info.json";
 
 const fetchInfo = async () => {
   let info = {};
 
   try {
     const infoResponse = await fetch(
-      "https://proclubs.ea.com/api/fifa/clubs/seasonalStats?platform=ps4&clubIds=16557521",
+      `https://proclubs.ea.com/api/fifa/clubs/seasonalStats?platform=ps4&clubIds=${FCSILMI}`,
       {
         headers: {
           Referer: "https://www.ea.com/",

@@ -102,7 +102,7 @@ const Player = ({ data, name = "IA", top, left }) => {
                   <ListboxOption value="total">Total</ListboxOption>
                   {Object.keys(data.sessions).map((opt, i) => (
                     <ListboxOption key={i} value={opt}>
-                      {opt}*
+                      {opt}
                     </ListboxOption>
                   ))}
                 </Listbox>

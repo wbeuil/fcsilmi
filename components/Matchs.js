@@ -79,7 +79,7 @@ const Matchs = ({ maxMatchsPages, matchs, players }) => {
 
     if (!hasNextPage) return;
 
-    import(`../data/matchs/${nextPage}.json`)
+    import(`../data/season2/matchs/${nextPage}.json`)
       .then(({ default: data }) => {
         setArr([...arr, ...data]);
         setPage(nextPage);

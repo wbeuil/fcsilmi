@@ -2,9 +2,9 @@ const fetch = require("node-fetch");
 const path = require("path");
 const fs = require("fs");
 
-const matchsDirectoryPath = path.join(__dirname, "../data/matchs");
+const matchsDirectoryPath = path.join(__dirname, "../data/season2/matchs");
 
-const FCSILMI = "16557521";
+const FCSILMI = "3130723";
 
 const ids = {
   285834324: "MisterMV",
@@ -25,7 +25,7 @@ const fetchMatchs = async () => {
 
   try {
     const matchsResponse = await fetch(
-      `https://proclubs.ea.com/api/fifa/clubs/matches?matchType=gameType9&platform=ps4&clubIds=16557521&maxResultCount=${nbr}`,
+      `https://proclubs.ea.com/api/fifa/clubs/matches?matchType=gameType9&platform=ps4&clubIds=${FCSILMI}&maxResultCount=${nbr}`,
       {
         headers: {
           Referer: "https://www.ea.com/",
