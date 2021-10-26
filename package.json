@@ -13,27 +13,27 @@
     "fetch": "node scripts/fetch.js"
   },
   "dependencies": {
-    "@reach/accordion": "^0.13.2",
-    "@reach/dialog": "^0.13.2",
-    "@reach/listbox": "^0.13.2",
-    "@reach/tabs": "^0.13.2",
+    "@reach/accordion": "^0.16.1",
+    "@reach/dialog": "^0.16.2",
+    "@reach/listbox": "^0.16.2",
+    "@reach/tabs": "^0.16.1",
     "@svgr/webpack": "^5.5.0",
     "chrome-aws-lambda": "^8.0.2",
     "cors": "^2.8.5",
-    "joi": "^17.4.0",
-    "next": "10.0.9",
+    "joi": "^17.4.2",
+    "next": "^11.1.2",
     "next-joi": "^2.2.1",
-    "next-themes": "^0.0.14",
+    "next-themes": "^0.0.15",
     "puppeteer-core": "^8.0.0",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-minimal-pie-chart": "^8.2.0",
-    "swr": "^0.5.4"
+    "swr": "^0.5.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "node-fetch": "^2.6.1",
-    "postcss": "^8.2.8",
-    "tailwindcss": "^2.0.3"
+    "autoprefixer": "^10.3.7",
+    "node-fetch": "^2.6.5",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17"
   }
 }
