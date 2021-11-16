@@ -1,3 +1,4 @@
+const setCookie = require("set-cookie-parser");
 const fetch = require("node-fetch");
 const path = require("path");
 const fs = require("fs");
@@ -20,7 +21,7 @@ const ids = {
 
 const nbr = process.argv[2] || "5";
 
-const fetchMatchs = async () => {
+const fetchMatchs = async (Cookie) => {
   let matchs = [];
 
   try {
@@ -28,6 +29,11 @@ const fetchMatchs = async () => {
       `https://proclubs.ea.com/api/fifa/clubs/matches?matchType=gameType9&platform=ps4&clubIds=${FCSILMI}&maxResultCount=${nbr}`,
       {
         headers: {
+          Cookie,
+          "User-Agent": "PostmanRuntime/7.28.4",
+          Connection: "keep-alive",
+          Accept: "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
           Referer: "https://www.ea.com/",
         },
       }
@@ -116,35 +122,53 @@ const parseMatch = (m) => {
   return match;
 };
 
-fetchMatchs().then((res) => {
-  const matchs = res.map((match) => parseMatch(match));
-  const files = fs.readdirSync(matchsDirectoryPath);
+fetch(`https://www.ea.com/user-data`, {
+  headers: {
+    Cookie: "EDGESCAPE_COUNTRY=FR; EDGESCAPE_REGION=IDF",
+    "User-Agent": "PostmanRuntime/7.28.4",
+    Connection: "keep-alive",
+    Accept: "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+  },
+}).then((res) => {
+  const cookieHeaders = setCookie.splitCookiesString(
+    res.headers.get("set-cookie")
+  );
+  const cookies = setCookie.parse(cookieHeaders);
 
-  files.sort((a, b) => {
-    const first = a.split(".")[0];
-    const second = b.split(".")[0];
+  let Cookie = "";
+  cookies.forEach((c) => (Cookie += `${c.name}=${c.value};`));
 
-    return first - second;
-  });
+  fetchMatchs(Cookie).then((res) => {
+    const matchs = res.map((match) => parseMatch(match));
+    const files = fs.readdirSync(matchsDirectoryPath);
 
-  let tmp = [];
-  files.forEach((file) => {
-    const filePath = path.join(matchsDirectoryPath, file);
-    const data = fs.readFileSync(filePath);
-    const val = JSON.parse(data);
-    tmp.push(...val);
-  });
-  tmp.unshift(...matchs);
+    files.sort((a, b) => {
+      const first = a.split(".")[0];
+      const second = b.split(".")[0];
 
-  let index = 0;
-  const chunk = 10;
-  for (i = 0; i < tmp.length; i += chunk) {
-    const arr = tmp.slice(i, i + chunk);
-    const json = JSON.stringify(arr);
-    const filePath = path.join(matchsDirectoryPath, `${index}.json`);
-    fs.writeFile(filePath, json, (err) => {
-      if (err) return console.error(err);
+      return first - second;
     });
-    index++;
-  }
+
+    let tmp = [];
+    files.forEach((file) => {
+      const filePath = path.join(matchsDirectoryPath, file);
+      const data = fs.readFileSync(filePath);
+      const val = JSON.parse(data);
+      tmp.push(...val);
+    });
+    tmp.unshift(...matchs);
+
+    let index = 0;
+    const chunk = 10;
+    for (i = 0; i < tmp.length; i += chunk) {
+      const arr = tmp.slice(i, i + chunk);
+      const json = JSON.stringify(arr);
+      const filePath = path.join(matchsDirectoryPath, `${index}.json`);
+      fs.writeFile(filePath, json, (err) => {
+        if (err) return console.error(err);
+      });
+      index++;
+    }
+  });
 });

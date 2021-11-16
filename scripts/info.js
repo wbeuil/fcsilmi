@@ -1,3 +1,4 @@
+const setCookie = require("set-cookie-parser");
 const fetch = require("node-fetch");
 const path = require("path");
 const fs = require("fs");
@@ -6,7 +7,7 @@ const FCSILMI = "3130723";
 const matchsDirectoryPath = path.join(__dirname, "../data/season2/matchs");
 const jsonPath = "./data/season2/info.json";
 
-const fetchInfo = async () => {
+const fetchInfo = async (Cookie) => {
   let info = {};
 
   try {
@@ -14,6 +15,11 @@ const fetchInfo = async () => {
       `https://proclubs.ea.com/api/fifa/clubs/seasonalStats?platform=ps4&clubIds=${FCSILMI}`,
       {
         headers: {
+          Cookie,
+          "User-Agent": "PostmanRuntime/7.28.4",
+          Connection: "keep-alive",
+          Accept: "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
           Referer: "https://www.ea.com/",
         },
       }
@@ -161,19 +167,37 @@ const getStartDate = (match) => {
   return `${day}/${month}/${year}`;
 };
 
-fetchInfo().then((res) => {
-  const matchsBySessions = listMatchsBySessions();
-  const info = parseInfo(res[0]);
+fetch(`https://www.ea.com/user-data`, {
+  headers: {
+    Cookie: "EDGESCAPE_COUNTRY=FR; EDGESCAPE_REGION=IDF",
+    "User-Agent": "PostmanRuntime/7.28.4",
+    Connection: "keep-alive",
+    Accept: "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+  },
+}).then((res) => {
+  const cookieHeaders = setCookie.splitCookiesString(
+    res.headers.get("set-cookie")
+  );
+  const cookies = setCookie.parse(cookieHeaders);
 
-  for (const session of matchsBySessions) {
-    const tmp = parseSession(session);
-    const firstGame = session[session.length - 1];
-    const startDate = getStartDate(firstGame);
-    info.sessions[startDate] = tmp;
-  }
+  let Cookie = "";
+  cookies.forEach((c) => (Cookie += `${c.name}=${c.value};`));
 
-  const json = JSON.stringify(info);
-  fs.writeFile(jsonPath, json, (err) => {
-    if (err) return console.error(err);
+  fetchInfo(Cookie).then((res) => {
+    const matchsBySessions = listMatchsBySessions();
+    const info = parseInfo(res[0]);
+
+    for (const session of matchsBySessions) {
+      const tmp = parseSession(session);
+      const firstGame = session[session.length - 1];
+      const startDate = getStartDate(firstGame);
+      info.sessions[startDate] = tmp;
+    }
+
+    const json = JSON.stringify(info);
+    fs.writeFile(jsonPath, json, (err) => {
+      if (err) return console.error(err);
+    });
   });
 });

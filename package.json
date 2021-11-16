@@ -34,6 +34,7 @@
     "autoprefixer": "^10.3.7",
     "node-fetch": "^2.6.5",
     "postcss": "^8.3.11",
+    "set-cookie-parser": "^2.4.8",
     "tailwindcss": "^2.2.17"
   }
 }
